@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+</head>
+</html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="images/favicon.ico" type="image/gif" sizes="16x16">
+  <body class="bg-taskmate">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'images/logo1.png' %}" alt="Logo" style="display: inline-block; vertical-align: middle;">
+          <span style="display: inline-block; vertical-align: middle;">Taskmate</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'todolist' %}">Todo List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {% if user.is_authenticated %}
+        <div class="form inline my-2 my-lg-0">
+          <div class="p-2 bg-dark text-white">Logged in as {{ user.username }}</div>
+          <form method="post" action="{% url 'logout' %}" class="d-inline">  <!-- Use d-inline for inline form -->
+            {% csrf_token %}
+            <button class="btn btn-info my-2 my-sm-0" type="submit">Logout</button>
+          </form>
+        </div>
+      {% else %}
+        <a href="{% url 'login' %}">
+          <button class="btn btn-success mr-2 my-2 my-sm-0" type="submit">Login</button>
+        </a>
+        <a href="{% url 'register' %}">
+          <button class="btn btn-primary my-2 my-sm-0" type="Submit">Register</button>
+        </a>
+      {% endif %}
+    </nav>
+    
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

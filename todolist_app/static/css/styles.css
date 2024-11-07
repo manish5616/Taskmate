@@ -1,0 +1,14 @@
+.bg-taskmate {
+    background-color: #f5f5f5; /* Light gray background for a neutral look */
+    color: #333; /* Dark gray text for readability */
+    padding: 20px; /* Padding around the content */
+    min-height: 100vh; /* Cover the full height of the viewport */
+}
+
+.card {
+    background-color: #ffffff; /* White background for content areas */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 15px; /* Padding inside the card */
+    margin: 15px 0; /* Space between cards */
+}
